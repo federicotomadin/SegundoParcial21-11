@@ -4,5 +4,6 @@ export class Concesionaria {
     razonSocial: string;
     telefono: string;
     localidad: string;
-    uid: string;
+    password: string;
+    urlFoto: string;
     }

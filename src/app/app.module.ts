@@ -1,5 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
+
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
@@ -16,32 +19,34 @@ import { LoginComponent } from './componentes/login/login.component';
 import { RegistroComponent } from './componentes/registro/registro.component';
 import { environment } from 'src/environments/environment';
 import { ConcesioService } from './servicios/concesio.service';
-import { FormsModule } from '@angular/forms';
 import { QRCodeModule } from 'angular2-qrcode';
 import { MenuComponent } from './componentes/menu/menu.component';
-
-
+import { ErrorComponent } from './componentes/error/error.component';
+import { MiCaptchaComponent } from './componentes/mi-captcha/mi-captcha.component';
+import { RecaptchaModule } from 'ng-recaptcha';
+import { HomeComponent } from './componentes/home/home.component';
 
 @NgModule({
   declarations: [
-    FormsModule,
-    BrowserModule,
-    AppRoutingModule,
-    AppRoutingModule,
     AppComponent,
     LoginComponent,
     RegistroComponent,
+    MenuComponent,
+    ErrorComponent,
+    MiCaptchaComponent,
+    HomeComponent
+  ],
+  imports: [
+    FormsModule,
+    BrowserModule,
+    AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule, // for database
     AngularFirestoreModule,
     AngularFireAuthModule,
     AngularFireStorageModule,
     QRCodeModule,
-    MenuComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
+    RecaptchaModule.forRoot()
   ],
   providers: [ConcesioService, FirebaseStorageService],
   bootstrap: [AppComponent]

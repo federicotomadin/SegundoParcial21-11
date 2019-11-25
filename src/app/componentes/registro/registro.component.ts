@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../servicios/auth.service';
 import Swal from 'sweetalert2';
-// import * as Swal from 'sweetalert2';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Concesionaria } from 'src/app/clases/Concesionaria';
-import { ConcesioService } from 'src/app/servicios/concesio.service';
+import { Concesionaria } from '../../clases/Concesionaria';
+import { ConcesioService } from '../../servicios/concesio.service';
 import { FirebaseStorageService } from '../../servicios/firebase-storage.service';
 
 
@@ -17,17 +16,18 @@ import { FirebaseStorageService } from '../../servicios/firebase-storage.service
 })
 export class RegistroComponent implements OnInit {
 
-  concesionaria: Concesionaria;
+  concesio: Concesionaria;
   urlPublica: string;
+  cargarFotoLogin: string;
 
-  constructor(private authUser: AuthService, private router: Router,
+  constructor(private authConcesio: AuthService, private router: Router,
               private serviceFireStorage: FirebaseStorageService,
-              private usuarioService: ConcesioService) {
+              private concesionariaService: ConcesioService) {
 
    }
 
   ngOnInit() {
-    this.concesionaria = new Concesionaria();
+    this.concesio = new Concesionaria();
   }
 
 ngSubmit(form: NgForm) {
@@ -36,12 +36,12 @@ ngSubmit(form: NgForm) {
 
   Swal.fire({
       allowOutsideClick: false,
-      type: 'info',
+      icon: 'info',
       text: 'Se ha registrado con exito...',
       timer: 1500
     });
     // Swal.showLoading();
-  this.authUser.CrearUsuario(form.value);
+  this.authConcesio.CrearUsuario(form.value, this.cargarFotoLogin);
   this.router.navigate(['/Login']);
 
   }
@@ -51,11 +51,12 @@ ngSubmit(form: NgForm) {
     if ($event.target.files.length === 1) {
       this.serviceFireStorage.referenciaCloudStorage($event.target.files[0].name).getDownloadURL()
        .subscribe(resp  => {
-         this.urlPublica = resp;
+         this.urlPublica = resp + '_thumb_' + '_480.' + ($event.target.files[0].type).substr(6, 3).toString();
+         this.cargarFotoLogin = resp + '_thumb_' + '_480.' + ($event.target.files[0].type).substr(6, 3);
 
          Swal.fire({
           allowOutsideClick: false,
-          type: 'info',
+          icon: 'info',
           text: 'Imagen cargada con exito'
 });
       }, (error) => {

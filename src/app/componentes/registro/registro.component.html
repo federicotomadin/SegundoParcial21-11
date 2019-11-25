@@ -1,5 +1,6 @@
 <body>
     <div class="container">
+        <h1>Registro de Concecionaria</h1>
         <div class="jumbotron">
             <h2 id="terminos">Terminos y condiciones</h2>
             <p>El Gobierno de la República Argentina (en adelante el “Gobierno Nacional”) no es responsable por los daños y perjuicios que puedan surgir, incluyendo, sin límite, daños, pérdidas o gastos directos, indirectos, que surjan en relación con el
@@ -16,7 +17,7 @@
     </div>
 
 
-    <h1>Registro de Concecionaria</h1>
+
     <div id="id01" class="modal animated fadeInLeft faster">
         <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
         <form (ngSubmit)="ngSubmit( f )" #f="ngForm" class="modal-content animate">
@@ -25,7 +26,7 @@
 
                 <label><b>Id</b></label><br>
                 <span *ngIf="f.submitted && f.controls['key'].errors" class="text-danger animated fadeIn"></span>
-                <input type="text" placeholder="Ingresá tu id" [(ngModel)]="usuario.key" name="key" disabled>
+                <input type="text" placeholder="Ingresá tu id" [(ngModel)]="concesio.key" name="key" disabled>
                 <small class="form-text text-muted">Este campo es autogenerado</small>
 
                 <!-- <label><b>Nombre</b></label><br>
@@ -38,21 +39,24 @@
 
                 <label><b>Email</b></label><br>
                 <span *ngIf="f.submitted && f.controls['email'].errors" class="text-danger animated fadeIn">El correo es obligatorio</span>
-                <input type="text" placeholder="Ingresá tu correo" [(ngModel)]="usuario.email" name="email" required>
+                <input type="text" placeholder="Ingresá tu correo" [(ngModel)]="concesio.email" name="email" required>
 
                 <label><b>Clave</b></label><br>
                 <span *ngIf="f.submitted && f.controls['password'].errors" class="text-danger animated fadeIn">La contraseña es obligatoria, minimo 6 caracteres</span>
-                <input type="password" placeholder="Acá la clave" [(ngModel)]="usuario.password" name="password" minlength="6" required>
+                <input type="password" placeholder="Acá la clave" [(ngModel)]="concesio.password" name="password" minlength="6" required>
 
-                <label><b>Tipo de Usuario</b></label><br>
-                <span *ngIf="f.submitted && f.controls['tipoUsuario'].errors" class="text-danger animated fadeIn">Tipo de usuario es obligatorio</span>
-                <select class="custom-select custom-select-lg col-md-3" name="tipoUsuario" [(ngModel)]="usuario.TipoUsuario" required>
-                        <option value="0" >Administrador</option>
-                        <option value="1">Profesor</option>
-                        <option value="2">Alumno</option>
-                </select><br>
-                <!-- <input type="text" placeholder="Ingresá tu correo" [(ngModel)]="usuario.tipoUsuario" name="tipoUsuario" required> -->
+                <label><b>Razon Social</b></label><br>
+                <span *ngIf="f.submitted && !f.controls['razonSocial'].touched" class="text-danger animated fadeIn">El razon social es obligatoria</span>
+                <input type="text" placeholder="Razon social" [(ngModel)]="concesio.razonSocial" name="razonSocial" required>
 
+
+                <label><b>Telefono</b></label><br>
+                <span *ngIf="f.submitted && f.controls['telefono'].errors" class="text-danger animated fadeIn">El telefono es obligatorio</span>
+                <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' placeholder="Telefono" [(ngModel)]="concesio.telefono" name="telefono" maxlength="10" minlength="1" required>
+
+                <label><b>Localidad</b></label><br>
+                <span *ngIf="f.submitted && f.controls['localidad'].errors" class="text-danger animated fadeIn">La localidad es obligatoria</span>
+                <input type="text" placeholder="Localidad" [(ngModel)]="concesio.localidad" name="localidad" required>
 
 
                 <!-- <label><b>Repita la clave</b></label><br>
@@ -61,8 +65,7 @@
  -->
                 <input style="display: none;" type="file" (change)="onFileSelectd($event)" class="col-md-6" name="fileInput" #fileInput/>
                 <button type="button" (click)="fileInput.click()" class="btn btn-secondary col-md-3 btn-sm">Subir Foto</button><br>
-                <a href="{{fotoSubida}}" target="_blank" [(ngModel)]="name" name="name" ngDefaultControl>Foto Subida</a><br>
-
+                <a href="{{urlPublica}}" target="_blank" [(ngModel)]="name" name="name" ngDefaultControl>Foto Subida</a><br>
 
                 <input type="checkbox" [(ngModel)]="recordarme" name="remember-me">Recordar mis datos
                 <p>creando la cuenta aceptando los <a style="color: blue" onclick="document.getElementById('id01').style.display='none'">Terminos y condiciones</a>.</p>
