@@ -51,8 +51,8 @@ ngSubmit(form: NgForm) {
     if ($event.target.files.length === 1) {
       this.serviceFireStorage.referenciaCloudStorage($event.target.files[0].name).getDownloadURL()
        .subscribe(resp  => {
-         this.urlPublica = resp + '_thumb_' + '_480.' + ($event.target.files[0].type).substr(6, 3).toString();
-         this.cargarFotoLogin = resp + '_thumb_' + '_480.' + ($event.target.files[0].type).substr(6, 3);
+         this.urlPublica = resp + '_thumb_' + '_220.' + ($event.target.files[0].type).substr(6, 3).toString();
+         this.cargarFotoLogin = resp + '_thumb_' + '_220.' + ($event.target.files[0].type).substr(6, 3);
 
          Swal.fire({
           allowOutsideClick: false,
