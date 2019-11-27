@@ -14,6 +14,7 @@ export class ConcesioService {
   concesionaria: Observable<Concesionaria[]>;
   concesionariaDoc;
 
+
   RefConcesio: AngularFireList<Concesionaria> = null;
 
   constructor(private db: AngularFireDatabase, private miBase: AngularFirestore) {
@@ -24,6 +25,7 @@ export class ConcesioService {
   getConcesio() {
     return this.concesionaria;
   }
+
 
 
   createConcesio(concesio: Concesionaria, urlFoto: string): void {

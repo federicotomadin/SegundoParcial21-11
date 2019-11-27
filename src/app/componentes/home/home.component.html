@@ -2,10 +2,27 @@
 
 <div class="container">
     <ul>
-        <li *ngFor="let item of listaConcesianarias; let indexC = index">
-            <button type="button" class="btn btn-primary">Concesioaria: {{indexC + 1 }}</button>
-
+          
+          <div class="container" style="align-content: center;">
+            <button (click)="muestraLocalidad()" type="button" class="btn btn-primary">Localidades</button><br><br>
+            <button type="button" class="btn btn-primary">Razones Sociales</button><br><br>
+            <button type="button" class="btn btn-primary">Telefonos</button><br><br>
+        </div>
+      
+        <li *ngFor="let item of listaConcesianarias; let indexC = index">       
+              <div *ngIf= "mostrarRazonSocial " class="col">
+                <label for="razonSocial">Razon Social</label>
+                <input type="text" name="razonSocial" value={{item.razonSocial}}><br>
+            </div>
+               <div *ngIf="mostrarTelefono" class="col">
+                <label for="telefono">Telefono</label>
+                <input type="text" name="telefono" value={{item.telefono}}><br>
+            </div>
+            <div *ngIf="mostrarLocalidad" class="col">
+                <label for="localidad">Localidad</label>
+                <input type="text" name="localidad" value={{item.localidad}}><br>  
+            </div>      
         </li>
+   
     </ul>
-
 </div>
