@@ -47,7 +47,7 @@ public eventAuthErrors = this.eventAuthError.asObservable();
   .then(concesioCredential => {
     if (concesioCredential) {
 
-  this.router.navigate(['/Administrador']);
+  this.router.navigate(['/Home']);
  }
 });
  }

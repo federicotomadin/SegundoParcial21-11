@@ -9,12 +9,14 @@ import { RegistroComponent } from './componentes/registro/registro.component';
 // import { AdministradorComponent } from './componentes/administrador/administrador.component';
 // import { ErrorComponent } from './componentes/error/error.component';
 import { AuthGuard } from './auth.guard';
+import { HomeComponent } from './componentes/home/home.component';
 
 
 const MiRuteo = [
   {path: '' , component: LoginComponent},
   {path: 'Login' , component: LoginComponent, canActivate: [AuthGuard]},
-  {path: 'Registro' , component: RegistroComponent}];
+  {path: 'Registro' , component: RegistroComponent},
+  {path: 'Home' , component: HomeComponent}];
 
 
   // {path: '**' , component: ErrorComponent},

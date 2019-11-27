@@ -1,1 +1,11 @@
-<app-menu></app-menu>
+<app-menu></app-menu><br>
+
+<div class="container">
+    <ul>
+        <li *ngFor="let item of listaConcesianarias; let indexC = index">
+            <button type="button" class="btn btn-primary">Concesioaria: {{indexC + 1 }}</button>
+
+        </li>
+    </ul>
+
+</div>

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Concesionaria } from '../clases/Concesionaria';
 import { AngularFireList, AngularFireDatabase } from '@angular/fire/database';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,11 +10,19 @@ import { AngularFireList, AngularFireDatabase } from '@angular/fire/database';
 export class ConcesioService {
 
   private dbPathConcesio = '/Concesionaria';
+  concesionariaCollection;
+  concesionaria: Observable<Concesionaria[]>;
+  concesionariaDoc;
 
   RefConcesio: AngularFireList<Concesionaria> = null;
 
-  constructor(private db: AngularFireDatabase) {
+  constructor(private db: AngularFireDatabase, private miBase: AngularFirestore) {
     this.RefConcesio = db.list(this.dbPathConcesio);
+    this.concesionaria = this.miBase.collection('concesionaria').valueChanges();
+  }
+
+  getConcesio() {
+    return this.concesionaria;
   }
 
 
@@ -27,9 +37,7 @@ export class ConcesioService {
     this.RefConcesio.push(con);
   }
 
-  getConcesio(concesio: Concesionaria) {
-    return this.RefConcesio = this.db.list('concesionaria');
-}
+
 
 
 
