@@ -1,28 +1,39 @@
-<app-menu></app-menu><br>
+<!-- <app-menu></app-menu><br> -->
 
 <div class="container">
-    <ul>
-          
-          <div class="container" style="align-content: center;">
-            <button (click)="muestraLocalidad()" type="button" class="btn btn-primary">Localidades</button><br><br>
-            <button type="button" class="btn btn-primary">Razones Sociales</button><br><br>
-            <button type="button" class="btn btn-primary">Telefonos</button><br><br>
+
+    <div class="container-fluid" style="justify-content: center;">
+        <button (click)="mostrarLocalidad=!mostrarLocalidad" type="button" class="btn btn-primary">Localidades</button><br><br>
+        <button (click)="mostrarRazonSocial=!mostrarRazonSocial" type="button" class="btn btn-primary">Razones Sociales</button><br><br>
+        <button (click)="mostrarTelefono=!mostrarTelefono" type="button" class="btn btn-primary">Telefonos</button><br><br>
+    </div><br><br><br><br><br><br><br><br>
+
+    <table>
+        <div class="container-fluid" *ngFor="let item of listaConcesianarias; let indexC = index">
+            <td>
+                <div *ngIf="mostrarRazonSocial" class="col">
+                    <label for="razonSocial">Razon Social</label>
+                    <div *ngFor="let razon of listaConcesianarias">
+                        <input type="text" name="razonSocial" value={{razon.razonSocial}}><br>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div *ngIf="mostrarTelefono" class="col">
+                    <label for="telefono">Telefono</label>
+                    <div *ngFor="let tel of listaConcesianarias">
+                        <input type="text" name="telefono" value={{tel.telefono}}><br>
+                    </div>
+                </div>
+            </td>
+            <td>
+                <div *ngIf="mostrarLocalidad" class="col">
+                    <label for="localidad">Localidad</label><br>
+                    <div *ngFor="let local of listaConcesianarias">
+                        <input type="text" name="localidad" value={{local.localidad}}><br>
+                    </div>
+                </div>
+            </td>
         </div>
-      
-        <li *ngFor="let item of listaConcesianarias; let indexC = index">       
-              <div *ngIf= "mostrarRazonSocial " class="col">
-                <label for="razonSocial">Razon Social</label>
-                <input type="text" name="razonSocial" value={{item.razonSocial}}><br>
-            </div>
-               <div *ngIf="mostrarTelefono" class="col">
-                <label for="telefono">Telefono</label>
-                <input type="text" name="telefono" value={{item.telefono}}><br>
-            </div>
-            <div *ngIf="mostrarLocalidad" class="col">
-                <label for="localidad">Localidad</label>
-                <input type="text" name="localidad" value={{item.localidad}}><br>  
-            </div>      
-        </li>
-   
-    </ul>
+    </table>
 </div>

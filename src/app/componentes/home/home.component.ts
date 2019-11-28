@@ -8,20 +8,18 @@ import { ConcesioService } from 'src/app/servicios/concesio.service';
 })
 export class HomeComponent implements OnInit {
 
-  index:number;
+  index: number;
   listaConcesianarias = [];
-  mostrarLocalidad: boolean = false;
+  mostrarLocalidad = false;
+  mostrarRazonSocial = false;
+  mostrarTelefono = false;
 
   constructor(private concesioService: ConcesioService) { }
 
   ngOnInit() {
      this.concesioService.getConcesio().subscribe(concesio => {
-      this.listaConcesianarias = concesio });
+      this.listaConcesianarias = concesio; });
   }
 
-  muestraLocalidad() { 
-    this.mostrarLocalidad = true;
-
-  }
 
 }

@@ -13,12 +13,12 @@ import { HomeComponent } from './componentes/home/home.component';
 
 
 const MiRuteo = [
-  {path: '' , component: LoginComponent},
-  {path: 'Login' , component: LoginComponent, canActivate: [AuthGuard]},
+  {path: '' , component: HomeComponent},
+  {path: 'Login' , component: LoginComponent},
   {path: 'Registro' , component: RegistroComponent},
   {path: 'Home' , component: HomeComponent}];
 
-
+  // canActivate: [AuthGuard]
   // {path: '**' , component: ErrorComponent},
   // {path: 'error' , component: ErrorComponent}];
 

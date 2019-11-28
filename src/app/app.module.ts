@@ -25,6 +25,7 @@ import { ErrorComponent } from './componentes/error/error.component';
 import { MiCaptchaComponent } from './componentes/mi-captcha/mi-captcha.component';
 import { RecaptchaModule } from 'ng-recaptcha';
 import { HomeComponent } from './componentes/home/home.component';
+import { VehiculoComponent } from './componentes/vehiculo/vehiculo.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { HomeComponent } from './componentes/home/home.component';
     MenuComponent,
     ErrorComponent,
     MiCaptchaComponent,
-    HomeComponent
+    HomeComponent,
+    VehiculoComponent
   ],
   imports: [
     FormsModule,

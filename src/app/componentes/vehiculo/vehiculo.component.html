@@ -1,0 +1,32 @@
+<div class="container">
+    <label><b>Marca</b></label><br>
+    <span *ngIf="f.submitted && f.controls['marca'].errors" class="text-danger animated fadeIn">La marca es obligatorio</span>
+    <input type="text" placeholder="Ingresá la marca" [(ngModel)]="vehiculo.marca" name="marca" required>
+
+    <label><b>Modelo</b></label><br>
+    <span *ngIf="f.submitted && f.controls['modelo'].errors" class="text-danger animated fadeIn">El modelo es obligatorio</span>
+    <input type="text" placeholder="Ingresá el modelo" [(ngModel)]="vehiculo.modelo" name="modelo" required>
+
+
+    <label><b>Año</b></label><br>
+    <span *ngIf="f.submitted && f.controls['año'].errors" class="text-danger animated fadeIn">El año es obligatorio</span>
+    <input type="text" placeholder="Ingresá el año" [(ngModel)]="vehiculo.año" name="año" required>
+
+
+    <label><b>Kilometros</b></label><br>
+    <span *ngIf="f.submitted && f.controls['kilometros'].errors" class="text-danger animated fadeIn">Los kilometros es obligatorio</span>
+    <input type="text" placeholder="Ingresá los kilometros" [(ngModel)]="vehiculo.kilometros" name="kilometros" required>
+
+
+    <label><b>Tipo</b></label><br>
+    <span *ngIf="f.submitted && f.controls['tipo'].errors" class="text-danger animated fadeIn">El tipo es obligatorio</span>
+    <input type="text" placeholder="Ingresá el tipo" [(ngModel)]="vehiculo.tipo" name="tipo" required>
+
+    <label><b>Foto</b></label><br>
+    <input style="display: none;" type="file" (change)="onFileSelectd($event)" class="col-md-6" name="fileInput" #fileInput/>
+    <button type="button" (click)="fileInput.click()" class="btn btn-secondary col-md-3 btn-sm">Subir Foto</button><br>
+    <a href="{{urlPublica}}" target="_blank" [(ngModel)]="name" name="name" ngDefaultControl>Foto Subida</a><br>
+
+
+
+</div>
