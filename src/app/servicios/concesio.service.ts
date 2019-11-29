@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Concesionaria } from '../clases/Concesionaria';
 import { AngularFireList, AngularFireDatabase } from '@angular/fire/database';
-import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import { Observable } from 'rxjs';
 export class ConcesioService {
 
   private dbPathConcesio = '/Concesionaria';
-  concesionariaCollection;
+  concesionariaCollection: AngularFirestoreCollection;
   concesionaria: Observable<Concesionaria[]>;
   concesionariaDoc;
 
@@ -19,7 +20,15 @@ export class ConcesioService {
 
   constructor(private db: AngularFireDatabase, private miBase: AngularFirestore) {
     this.RefConcesio = db.list(this.dbPathConcesio);
-    this.concesionaria = this.miBase.collection('concesionaria').valueChanges();
+    // this.concesionaria = this.miBase.collection('concesionaria').valueChanges();
+    this.concesionariaCollection = this.miBase.collection('concecionaria');
+    this.concesionaria = this.concesionariaCollection.snapshotChanges().pipe(map(actions => {
+      return actions.map(a => {
+        const data = a.payload.doc.data() as Concesionaria;
+        data.key = a.payload.doc.id;
+        return data;
+      });
+    }));
   }
 
   getConcesio() {

@@ -1,7 +1,7 @@
 export class Vehiculo {
     marca?: string;
     modelo?: string;
-    año?: string;
+    anioo?: string;
     kilometros?: string;
     tipo?: string;
     foto?: string;

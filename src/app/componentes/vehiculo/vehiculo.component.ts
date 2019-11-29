@@ -3,6 +3,7 @@ import { ConcesioService } from '../../servicios/concesio.service';
 import { FirebaseStorageService } from '../../servicios/firebase-storage.service';
 import { Vehiculo } from '../../clases/vehiculo';
 import Swal from 'sweetalert2';
+import { NgForm } from '@angular/forms';
 
 
 @Component({
@@ -22,6 +23,10 @@ export class VehiculoComponent implements OnInit {
     this.vehiculo = new Vehiculo();
   }
 
+  ngSubmit(form: NgForm) {
+
+    }
+
   public onFileSelectd($event) {
 
     if ($event.target.files.length === 1) {
@@ -40,7 +45,6 @@ export class VehiculoComponent implements OnInit {
 
       this.serviceFireStorage.tareaCloudStorage($event.target.files[0].name, $event.target.files[0]);
    }
-
 }
 
 }
