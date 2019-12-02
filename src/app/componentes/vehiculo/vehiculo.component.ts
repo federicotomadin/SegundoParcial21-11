@@ -25,6 +25,24 @@ export class VehiculoComponent implements OnInit {
 
   ngSubmit(form: NgForm) {
 
+    if (form.invalid) { return; }
+
+    if (this.concesionariaService.addVehiculo(this.vehiculo)) {
+      Swal.fire({
+        allowOutsideClick: false,
+        icon: 'info',
+        text: 'Se ha registrado con exito...',
+        timer: 1500
+      });
+
+    } else {
+      Swal.fire({
+        allowOutsideClick: false,
+        icon: 'error',
+        text: 'Error al cargar',
+        timer: 1500
+      });
+    }
     }
 
   public onFileSelectd($event) {
@@ -33,6 +51,7 @@ export class VehiculoComponent implements OnInit {
       this.serviceFireStorage.referenciaCloudStorage($event.target.files[0].name).getDownloadURL()
        .subscribe(resp  => {
          this.urlPublica = resp + '_thumb_' + '_220.' + ($event.target.files[0].type).substr(6, 3).toString();
+         this.vehiculo.foto =  resp + '_thumb_' + '_220.' + ($event.target.files[0].type).substr(6, 3).toString();
 
          Swal.fire({
           allowOutsideClick: false,

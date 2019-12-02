@@ -1,9 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Concesionaria } from '../clases/Concesionaria';
 import { AngularFireList, AngularFireDatabase } from '@angular/fire/database';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Vehiculo } from '../clases/vehiculo';
+
+type CollentionPredicate<T> = string | AngularFirestoreCollection;
+type DocumentPredicate<T> = string | AngularFirestoreDocument;
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +16,13 @@ export class ConcesioService {
 
   private dbPathConcesio = '/Concesionaria';
   concesionariaCollection: AngularFirestoreCollection;
+  autoCollection: AngularFirestoreCollection<Vehiculo>;
+  automoviles: Observable<Vehiculo[]>;
   concesionaria: Observable<Concesionaria[]>;
-  concesionariaDoc;
+  concesionariaDoc: AngularFirestoreDocument<Concesionaria>;
+
+
+  idConcesionariaActual = 'UsXRSWuO2zgd8uQbhSyN';
 
 
   RefConcesio: AngularFireList<Concesionaria> = null;
@@ -21,18 +30,54 @@ export class ConcesioService {
   constructor(private db: AngularFireDatabase, private miBase: AngularFirestore) {
     this.RefConcesio = db.list(this.dbPathConcesio);
     // this.concesionaria = this.miBase.collection('concesionaria').valueChanges();
-    this.concesionariaCollection = this.miBase.collection('concecionaria');
+    this.autoCollection = this.miBase.collection('vehiculo');
+    this.automoviles = this.miBase.collection('vehiculo').valueChanges();
+    this.concesionariaCollection = this.miBase.collection('concesionaria');
     this.concesionaria = this.concesionariaCollection.snapshotChanges().pipe(map(actions => {
       return actions.map(a => {
         const data = a.payload.doc.data() as Concesionaria;
         data.key = a.payload.doc.id;
+        // this.idConcesionariaActual = a.payload.doc.id;
         return data;
       });
     }));
   }
 
+  private col<T>(ref: CollentionPredicate<T>, queryFn?): AngularFirestoreCollection{
+    return typeof ref === 'string' ? this.miBase.collection(ref, queryFn) : ref;
+  }
+
+  add<T>(ref: CollentionPredicate<T>, data) {
+    return this.col(ref).add({
+      ...data
+    });
+  }
+
   getConcesio() {
     return this.concesionaria;
+  }
+
+  getVehiculos() {
+     return this.automoviles;
+  }
+
+  private doc<T>(ref: DocumentPredicate<T>): AngularFirestoreDocument{
+    return typeof ref === 'string' ? this.miBase.doc(ref) : ref;
+  }
+
+
+
+  addVehiculo(auto: any): boolean {
+   if (this.add(`concesionaria/${this.idConcesionariaActual}/vehiculo`, {...auto})) {
+     return true;
+   } else {
+     return false;
+   }
+  }
+
+  deleteConcesio(concesio: Concesionaria) {
+    this.concesionariaDoc = this.miBase.doc(`concesionaria/${concesio.key}`);
+    this.concesionariaDoc.delete();
   }
 
 
@@ -45,7 +90,7 @@ export class ConcesioService {
     con.telefono = concesio.razonSocial;
     con.localidad = concesio.localidad;
     con.urlFoto = urlFoto;
-    this.RefConcesio.push(con);
+    this.RefConcesio.push({...concesio});
   }
 
 

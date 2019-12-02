@@ -26,6 +26,7 @@ import { MiCaptchaComponent } from './componentes/mi-captcha/mi-captcha.componen
 import { RecaptchaModule } from 'ng-recaptcha';
 import { HomeComponent } from './componentes/home/home.component';
 import { VehiculoComponent } from './componentes/vehiculo/vehiculo.component';
+import { ListadoVehiculosComponent } from './componentes/listado-vehiculos/listado-vehiculos.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { VehiculoComponent } from './componentes/vehiculo/vehiculo.component';
     ErrorComponent,
     MiCaptchaComponent,
     HomeComponent,
-    VehiculoComponent
+    VehiculoComponent,
+    ListadoVehiculosComponent
   ],
   imports: [
     FormsModule,

@@ -18,7 +18,8 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
      this.concesioService.getConcesio().subscribe(concesio => {
-      this.listaConcesianarias = concesio; });
+        this.listaConcesianarias = concesio; });
+
   }
 
 

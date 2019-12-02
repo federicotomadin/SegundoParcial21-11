@@ -1,0 +1,32 @@
+<div class="container">
+
+    <div class="container-fluid">
+        <table class="table" id="tablaVehiculos">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Marca</th>
+                    <th scope="col">Modelo</th>
+                    <th scope="col">Año</th>
+                    <th scope="col">Kilometros</th>
+                    <th scope="col">Tipo</th>
+                    <!-- <th scope="col">Foto</th> -->
+                </tr>
+            </thead>
+            <tbody *ngFor="let item of automoviles">
+                <tr>
+                    <td>{{item.marca}}</td>
+                    <td>{{item.modelo}}</td>
+                    <td>{{item.anio}}</td>
+                    <td>{{item.kilometros}}</td>
+                    <td>{{item.tipo}}</td>
+                    <!-- <td style="font-size: 10px;">{{item.foto}}</td> -->
+                </tr>
+            </tbody>
+
+        </table>
+    </div><br>
+
+    <button type="button" (click)="DescargarPdf()" class="btn btn-primary">Descargar PDF</button>
+    <button type="button" (click)="descargarCSV()" class="btn btn-secondary">Descargar CSV</button>
+
+</div>

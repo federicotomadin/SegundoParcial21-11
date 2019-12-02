@@ -14,7 +14,7 @@ import { VehiculoComponent } from './componentes/vehiculo/vehiculo.component';
 
 
 const MiRuteo = [
-  {path: '' , component: VehiculoComponent},
+  {path: '' , component: HomeComponent},
   {path: 'Login' , component: LoginComponent},
   {path: 'Registro' , component: RegistroComponent},
   {path: 'Home' , component: HomeComponent},

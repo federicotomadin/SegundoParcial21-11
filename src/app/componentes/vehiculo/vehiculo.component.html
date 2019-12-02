@@ -2,37 +2,37 @@
 
     <div class="container">
 
-        <label><b>Marca</b></label><br>
-        <span *ngIf="f.submitted && f.controls['marca'].errors" class="text-danger animated fadeIn">La marca es obligatorio</span>
+        <label><b>Marca</b></label>
+        <span *ngIf="f.submitted && f.controls['marca'].errors" class="text-danger animated fadeIn">La marca es obligatorio</span><br>
         <input type="text" placeholder="Ingresá la marca" [(ngModel)]="vehiculo.marca" name="marca" required><br>
 
-        <label><b>Modelo</b></label><br>
-        <span *ngIf="f.submitted && f.controls['modelo'].errors" class="text-danger animated fadeIn">El modelo es obligatorio</span>
+        <label><b>Modelo</b></label>
+        <span *ngIf="f.submitted && f.controls['modelo'].errors" class="text-danger animated fadeIn">El modelo es obligatorio</span><br>
         <input type="text" placeholder="Ingresá el modelo" [(ngModel)]="vehiculo.modelo" name="modelo" required><br>
 
 
-        <label><b>Año</b></label><br>
-        <span *ngIf="f.submitted && f.controls['anio'].errors" class="text-danger animated fadeIn">El año es obligatorio</span>
-        <input type="text" placeholder="Ingresá el año" [(ngModel)]="vehiculo.anio" name="anio" required><br>
+        <label><b>Año</b></label>
+        <span *ngIf="f.submitted && f.controls['anio'].errors" class="text-danger animated fadeIn">El año es obligatorio</span><br>
+        <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' placeholder="Ingresá el año" [(ngModel)]="vehiculo.anio" name="anio" maxlength="4" minlength="1" required><br>
 
 
-        <label><b>Kilometros</b></label><br>
-        <span *ngIf="f.submitted && f.controls['kilometros'].errors" class="text-danger animated fadeIn">Los kilometros es obligatorio</span>
-        <input type="text" placeholder="Ingresá los kilometros" [(ngModel)]="vehiculo.kilometros" name="kilometros" required><br>
+        <label><b>Kilometros</b></label>
+        <span *ngIf="f.submitted && f.controls['kilometros'].errors" class="text-danger animated fadeIn">Los kilometros es obligatorio</span><br>
+        <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57' placeholder="Ingresá los kilometros" [(ngModel)]="vehiculo.kilometros" maxlength="10" minlength="1" name="kilometros" required><br>
 
 
-        <label><b>Tipo</b></label><br>
-        <span *ngIf="f.submitted && f.controls['tipo'].errors" class="text-danger animated fadeIn">El tipo es obligatorio</span>
+        <label><b>Tipo</b></label>
+        <span *ngIf="f.submitted && f.controls['tipo'].errors" class="text-danger animated fadeIn">El tipo es obligatorio</span><br>
         <select class="custom-select custom-select-lg col-md-3" name="tipo" [(ngModel)]="vehiculo.tipo" required>
-            <option value="0" >Auto</option>
-            <option value="1">Camioneta</option>
-            <option value="2">Camion</option>
-    </select><br>
+            <option value="Auto">Auto</option>
+            <option value="Camioneta">Camioneta</option>
+            <option value="Camion">Camion</option>
+         </select><br>
 
-        <label><b>Foto</b></label><br>
+        <label><b>Foto</b></label>
         <input style="display: none;" type="file" (change)="onFileSelectd($event)" class="col-md-6" name="fileInput" #fileInput/>
         <button type="button" (click)="fileInput.click()" class="btn btn-secondary col-md-3 btn-sm">Subir Foto</button><br>
-        <a href="{{urlPublica}}" target="_blank" [(ngModel)]="name" name="name" ngDefaultControl>Foto Subida</a><br>
+        <a href="{{urlPublica}}" target="_blank" [(ngModel)]="vehiculo.foto" name="foto" ngDefaultControl>Foto Subida</a><br>
 
         <div class="clearfix">
             <button type="submit" class="signupbtn">Cargar Auto</button>
