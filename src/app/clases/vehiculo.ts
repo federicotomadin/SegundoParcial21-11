@@ -5,4 +5,5 @@ export class Vehiculo {
     kilometros?: string;
     tipo?: string;
     foto?: string;
+    concesionaria: string;
     }

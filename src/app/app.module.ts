@@ -27,6 +27,7 @@ import { RecaptchaModule } from 'ng-recaptcha';
 import { HomeComponent } from './componentes/home/home.component';
 import { VehiculoComponent } from './componentes/vehiculo/vehiculo.component';
 import { ListadoVehiculosComponent } from './componentes/listado-vehiculos/listado-vehiculos.component';
+import { GrillaCompletaComponent } from './componentes/grilla-completa/grilla-completa.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { ListadoVehiculosComponent } from './componentes/listado-vehiculos/lista
     MiCaptchaComponent,
     HomeComponent,
     VehiculoComponent,
-    ListadoVehiculosComponent
+    ListadoVehiculosComponent,
+    GrillaCompletaComponent
   ],
   imports: [
     FormsModule,

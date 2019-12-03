@@ -31,7 +31,7 @@ export class ConcesioService {
     this.RefConcesio = db.list(this.dbPathConcesio);
     // this.concesionaria = this.miBase.collection('concesionaria').valueChanges();
     this.autoCollection = this.miBase.collection('vehiculo');
-    this.automoviles = this.miBase.collection('vehiculo').valueChanges();
+    this.automoviles = this.miBase.collection<Vehiculo>('vehiculo').valueChanges();
     this.concesionariaCollection = this.miBase.collection('concesionaria');
     this.concesionaria = this.concesionariaCollection.snapshotChanges().pipe(map(actions => {
       return actions.map(a => {
@@ -47,11 +47,6 @@ export class ConcesioService {
     return typeof ref === 'string' ? this.miBase.collection(ref, queryFn) : ref;
   }
 
-  add<T>(ref: CollentionPredicate<T>, data) {
-    return this.col(ref).add({
-      ...data
-    });
-  }
 
   getConcesio() {
     return this.concesionaria;
@@ -61,18 +56,13 @@ export class ConcesioService {
      return this.automoviles;
   }
 
-  private doc<T>(ref: DocumentPredicate<T>): AngularFirestoreDocument{
-    return typeof ref === 'string' ? this.miBase.doc(ref) : ref;
-  }
-
-
-
-  addVehiculo(auto: any): boolean {
-   if (this.add(`concesionaria/${this.idConcesionariaActual}/vehiculo`, {...auto})) {
-     return true;
-   } else {
-     return false;
-   }
+  addVehiculo(auto: Vehiculo): boolean {
+    auto.concesionaria = this.idConcesionariaActual;
+    if (this.autoCollection.add({...auto})) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   deleteConcesio(concesio: Concesionaria) {

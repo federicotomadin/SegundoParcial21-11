@@ -11,14 +11,16 @@ import { RegistroComponent } from './componentes/registro/registro.component';
 import { AuthGuard } from './auth.guard';
 import { HomeComponent } from './componentes/home/home.component';
 import { VehiculoComponent } from './componentes/vehiculo/vehiculo.component';
+import { GrillaCompletaComponent } from './componentes/grilla-completa/grilla-completa.component';
 
 
 const MiRuteo = [
-  {path: '' , component: HomeComponent},
+  {path: '' , component: GrillaCompletaComponent},
   {path: 'Login' , component: LoginComponent},
   {path: 'Registro' , component: RegistroComponent},
   {path: 'Home' , component: HomeComponent},
-  {path: 'Vehiculo' , component: VehiculoComponent}   ];
+  {path: 'Vehiculo' , component: VehiculoComponent},
+  {path: 'Vehiculo' , component: GrillaCompletaComponent}   ];
 
   // canActivate: [AuthGuard]
   // {path: '**' , component: ErrorComponent},
