@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ConcesioService } from 'src/app/servicios/concesio.service';
+import { NgForm } from '@angular/forms';
+
 
 @Component({
   selector: 'app-grilla-completa',
@@ -8,14 +10,14 @@ import { ConcesioService } from 'src/app/servicios/concesio.service';
 })
 export class GrillaCompletaComponent implements OnInit {
 
-  automoviles = [];
+  autosYConcesios = [];
+  filterTipo = '';
 
   constructor(private concesioService: ConcesioService) { }
 
   ngOnInit() {
     this.concesioService.getVehiculos().subscribe( resp => {
-      console.log(resp);
-      this.automoviles = resp;
+      this.autosYConcesios = resp;
     });
 
   }

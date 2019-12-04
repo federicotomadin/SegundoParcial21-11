@@ -15,19 +15,24 @@ export class VehiculoComponent implements OnInit {
 
   vehiculo: Vehiculo;
   urlPublica: string;
+  razonSocial: string;
 
   constructor( private serviceFireStorage: FirebaseStorageService,
                private concesionariaService: ConcesioService) { }
 
   ngOnInit() {
     this.vehiculo = new Vehiculo();
+    this.concesionariaService.getConcesio().subscribe(concesio => {
+       concesio.map(algo => {
+        this.razonSocial = algo.razonSocial;
+      }); });
   }
 
   ngSubmit(form: NgForm) {
 
     if (form.invalid) { return; }
 
-    if (this.concesionariaService.addVehiculo(this.vehiculo)) {
+    if (this.concesionariaService.addVehiculo(this.vehiculo, this.razonSocial)) {
       Swal.fire({
         allowOutsideClick: false,
         icon: 'info',

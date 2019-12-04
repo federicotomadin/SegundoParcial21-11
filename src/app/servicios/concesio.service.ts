@@ -23,6 +23,7 @@ export class ConcesioService {
 
 
   idConcesionariaActual = 'UsXRSWuO2zgd8uQbhSyN';
+  public razonSocial: string;
 
 
   RefConcesio: AngularFireList<Concesionaria> = null;
@@ -36,6 +37,7 @@ export class ConcesioService {
     this.concesionaria = this.concesionariaCollection.snapshotChanges().pipe(map(actions => {
       return actions.map(a => {
         const data = a.payload.doc.data() as Concesionaria;
+        this.razonSocial = data.razonSocial;
         data.key = a.payload.doc.id;
         // this.idConcesionariaActual = a.payload.doc.id;
         return data;
@@ -56,8 +58,8 @@ export class ConcesioService {
      return this.automoviles;
   }
 
-  addVehiculo(auto: Vehiculo): boolean {
-    auto.concesionaria = this.idConcesionariaActual;
+  addVehiculo(auto: Vehiculo, razonSoc: string): boolean {
+    auto.concesionaria = razonSoc;
     if (this.autoCollection.add({...auto})) {
       return true;
     } else {

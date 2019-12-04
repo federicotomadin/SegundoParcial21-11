@@ -28,6 +28,8 @@ import { HomeComponent } from './componentes/home/home.component';
 import { VehiculoComponent } from './componentes/vehiculo/vehiculo.component';
 import { ListadoVehiculosComponent } from './componentes/listado-vehiculos/listado-vehiculos.component';
 import { GrillaCompletaComponent } from './componentes/grilla-completa/grilla-completa.component';
+import { FilterPipe } from './pipes/filter.pipe';
+import { ConcesionariaPipe } from './pipes/concesionaria.pipe';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { GrillaCompletaComponent } from './componentes/grilla-completa/grilla-co
     HomeComponent,
     VehiculoComponent,
     ListadoVehiculosComponent,
-    GrillaCompletaComponent
+    GrillaCompletaComponent,
+    FilterPipe,
+    ConcesionariaPipe
   ],
   imports: [
     FormsModule,

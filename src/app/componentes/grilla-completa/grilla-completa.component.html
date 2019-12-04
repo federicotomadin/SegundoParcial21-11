@@ -1,7 +1,16 @@
 <div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <input type="text" class="form-control" name="filterTipo" placeholder="search Tipo" [(ngModel)]="filterTipo"><br>
+                <input type="text" class="form-control" name="filterTipo" placeholder="search Localidad" [(ngModel)]="filterTipo"><br>
+                <input type="text" class="form-control" name="filterConcesio" placeholder="search Concesionaria" [(ngModel)]="filterConcesio"><br>
+            </div>
+        </div>
+    </div>
 
     <div class="container-fluid">
-        <table class="table" id="tablaVehiculos">
+        <table class="table table-striped" id="tablaVehiculos">
             <thead class="thead-dark">
                 <tr>
                     <th scope="col">Marca</th>
@@ -9,16 +18,18 @@
                     <th scope="col">Año</th>
                     <th scope="col">Kilometros</th>
                     <th scope="col">Tipo</th>
+                    <th scope="col">Concesionaria</th>
                     <!-- <th scope="col">Foto</th> -->
                 </tr>
             </thead>
-            <tbody *ngFor="let item of automoviles">
+            <tbody *ngFor="let item of autosYConcesios | filter:filterTipo">
                 <tr>
                     <td>{{item.marca}}</td>
                     <td>{{item.modelo}}</td>
                     <td>{{item.anio}}</td>
                     <td>{{item.kilometros}}</td>
                     <td>{{item.tipo}}</td>
+                    <td>{{item.concesionaria}}</td>
                     <!-- <td style="font-size: 10px;">{{item.foto}}</td> -->
                 </tr>
             </tbody>
