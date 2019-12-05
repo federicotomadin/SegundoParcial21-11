@@ -11,15 +11,17 @@ import { NgForm } from '@angular/forms';
 export class GrillaCompletaComponent implements OnInit {
 
   autosYConcesios = [];
+  concesio = [];
   filterTipo = '';
+
 
   constructor(private concesioService: ConcesioService) { }
 
   ngOnInit() {
     this.concesioService.getVehiculos().subscribe( resp => {
       this.autosYConcesios = resp;
-    });
-
+     
+    });    
   }
 
 }

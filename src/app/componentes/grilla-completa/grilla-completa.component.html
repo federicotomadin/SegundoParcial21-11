@@ -2,9 +2,7 @@
     <div class="row">
         <div class="col">
             <div class="form-group">
-                <input type="text" class="form-control" name="filterTipo" placeholder="search Tipo" [(ngModel)]="filterTipo"><br>
-                <input type="text" class="form-control" name="filterTipo" placeholder="search Localidad" [(ngModel)]="filterTipo"><br>
-                <input type="text" class="form-control" name="filterConcesio" placeholder="search Concesionaria" [(ngModel)]="filterConcesio"><br>
+                <input type="text" class="form-control" name="filterTipo" placeholder="search Tipo y Concesionaria" [(ngModel)]="filterTipo"><br>
             </div>
         </div>
     </div>
@@ -19,6 +17,7 @@
                     <th scope="col">Kilometros</th>
                     <th scope="col">Tipo</th>
                     <th scope="col">Concesionaria</th>
+                    <th scope="col">Imagen</th>
                     <!-- <th scope="col">Foto</th> -->
                 </tr>
             </thead>
@@ -30,6 +29,11 @@
                     <td>{{item.kilometros}}</td>
                     <td>{{item.tipo}}</td>
                     <td>{{item.concesionaria}}</td>
+                    <td>{{item.localidad}}</td>
+                    <td>
+                        <img src="{{item.foto}}" alt="">
+                        <a target="_blank" href="{{item.foto}}">{{item.foto}}</a>
+                    </td>
                     <!-- <td style="font-size: 10px;">{{item.foto}}</td> -->
                 </tr>
             </tbody>

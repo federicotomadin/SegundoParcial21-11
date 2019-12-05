@@ -5,13 +5,14 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class FilterPipe implements PipeTransform {
 
-  transform(value: any, arg: any): any {
+  transform(value: any, tipo: any): any {
+    console.log(tipo);
     const resultadoTipo = [];
     for (const item of value) {
-      if (item.tipo.toLowerCase().indexOf(arg.toLowerCase()) > -1) {
+      if (item.tipo.toLowerCase().indexOf(tipo.toLowerCase()) > -1 ||
+      item.concesionaria.toLowerCase().indexOf(tipo.toLowerCase()) > -1) {
        resultadoTipo.push(item);
       }
-
     }
     return resultadoTipo;
   }

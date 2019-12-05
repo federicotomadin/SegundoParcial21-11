@@ -55,8 +55,8 @@ export class VehiculoComponent implements OnInit {
     if ($event.target.files.length === 1) {
       this.serviceFireStorage.referenciaCloudStorage($event.target.files[0].name).getDownloadURL()
        .subscribe(resp  => {
-         this.urlPublica = resp + '_thumb_' + '_220.' + ($event.target.files[0].type).substr(6, 3).toString();
-         this.vehiculo.foto =  resp + '_thumb_' + '_220.' + ($event.target.files[0].type).substr(6, 3).toString();
+         this.urlPublica = resp + '_thumb_' + '_50.' + ($event.target.files[0].type).substr(6, 3).toString();
+         this.vehiculo.foto =  resp + '_thumb_' + '_50.' + ($event.target.files[0].type).substr(6, 3).toString();
 
          Swal.fire({
           allowOutsideClick: false,

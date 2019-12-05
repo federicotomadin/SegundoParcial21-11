@@ -3,7 +3,7 @@ import { Concesionaria } from '../clases/Concesionaria';
 import { AngularFireList, AngularFireDatabase } from '@angular/fire/database';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, concat } from 'rxjs/operators';
 import { Vehiculo } from '../clases/vehiculo';
 
 type CollentionPredicate<T> = string | AngularFirestoreCollection;
@@ -20,6 +20,7 @@ export class ConcesioService {
   automoviles: Observable<Vehiculo[]>;
   concesionaria: Observable<Concesionaria[]>;
   concesionariaDoc: AngularFirestoreDocument<Concesionaria>;
+  algo: Observable<Vehiculo[]>;
 
 
   idConcesionariaActual = 'UsXRSWuO2zgd8uQbhSyN';
@@ -55,7 +56,7 @@ export class ConcesioService {
   }
 
   getVehiculos() {
-     return this.automoviles;
+   return this.automoviles;
   }
 
   addVehiculo(auto: Vehiculo, razonSoc: string): boolean {
