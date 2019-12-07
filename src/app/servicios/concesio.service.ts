@@ -20,10 +20,9 @@ export class ConcesioService {
   automoviles: Observable<Vehiculo[]>;
   concesionaria: Observable<Concesionaria[]>;
   concesionariaDoc: AngularFirestoreDocument<Concesionaria>;
-  algo: Observable<Vehiculo[]>;
 
 
-  idConcesionariaActual = 'UsXRSWuO2zgd8uQbhSyN';
+  idConcesionariaActual: any;
   public razonSocial: string;
 
 
@@ -40,7 +39,7 @@ export class ConcesioService {
         const data = a.payload.doc.data() as Concesionaria;
         this.razonSocial = data.razonSocial;
         data.key = a.payload.doc.id;
-        // this.idConcesionariaActual = a.payload.doc.id;
+        this.idConcesionariaActual = a.payload.doc.id;
         return data;
       });
     }));

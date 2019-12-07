@@ -20,7 +20,6 @@ export class LoginComponent implements OnInit {
   recordarme = false;
   usuario: Concesionaria;
   captchaLogin = 'vacio';
-  vCardData = 'codigo qr vacio';
   authError: any;
   logueado: string;
   mostrarImagen = false;
@@ -96,5 +95,4 @@ ngSubmit(form: NgForm) {
 this.Login(form);
 
 }
-
 }
