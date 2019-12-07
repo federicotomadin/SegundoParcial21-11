@@ -30,6 +30,7 @@ import { ListadoVehiculosComponent } from './componentes/listado-vehiculos/lista
 import { GrillaCompletaComponent } from './componentes/grilla-completa/grilla-completa.component';
 import { FilterPipe } from './pipes/filter.pipe';
 import { ConcesionariaPipe } from './pipes/concesionaria.pipe';
+import { ConvertirTipoImagenPipe } from './pipes/convertir-tipo-imagen.pipe';
 
 @NgModule({
   declarations: [
@@ -44,7 +45,8 @@ import { ConcesionariaPipe } from './pipes/concesionaria.pipe';
     ListadoVehiculosComponent,
     GrillaCompletaComponent,
     FilterPipe,
-    ConcesionariaPipe
+    ConcesionariaPipe,
+    ConvertirTipoImagenPipe
   ],
   imports: [
     FormsModule,

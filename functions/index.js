@@ -54,7 +54,7 @@ exports.optimizeImages = functions.storage
             await file.download({ destination });
             const bucketDir = dirname(filePath);
 
-            const sizes = [50, 640, 1200];
+            const sizes = [5, 640, 1200];
             const resizesPromises = sizes.map((size) => {
                 const thumbName = `${fileName}_thumb_${size}${extendName}`;
                 const thumbPath = join(workingDir, thumbName);

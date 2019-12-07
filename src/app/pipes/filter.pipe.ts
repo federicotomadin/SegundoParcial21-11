@@ -6,7 +6,6 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FilterPipe implements PipeTransform {
 
   transform(value: any, tipo: any): any {
-    console.log(tipo);
     const resultadoTipo = [];
     for (const item of value) {
       if (item.tipo.toLowerCase().indexOf(tipo.toLowerCase()) > -1 ||

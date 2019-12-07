@@ -18,7 +18,7 @@
                     <th scope="col">Tipo</th>
                     <th scope="col">Concesionaria</th>
                     <th scope="col">Imagen</th>
-                    <!-- <th scope="col">Foto</th> -->
+                    <th scope="col">QR Vehiculo</th>
                 </tr>
             </thead>
             <tbody *ngFor="let item of autosYConcesios | filter:filterTipo">
@@ -27,14 +27,21 @@
                     <td>{{item.modelo}}</td>
                     <td>{{item.anio}}</td>
                     <td>{{item.kilometros}}</td>
-                    <td>{{item.tipo}}</td>
+                    <td>
+                        <!-- {{item.tipo | convertirTipoImagen:item.foto}} -->
+                        <img src="{{item.tipo | convertirTipoImagen:item.foto}}" alt="">
+                        <a target="_blank" href="{{item.tipo | convertirTipoImagen:item.foto}}"></a>
+
+                    </td>
                     <td>{{item.concesionaria}}</td>
-                    <td>{{item.localidad}}</td>
+                    <!-- <td>{{item.localidad}}</td> -->
                     <td>
                         <img src="{{item.foto}}" alt="">
-                        <a target="_blank" href="{{item.foto}}">{{item.foto}}</a>
+                        <a target="_blank" href="{{item.foto}}"></a>
                     </td>
-                    <!-- <td style="font-size: 10px;">{{item.foto}}</td> -->
+                    <td>
+                        <qr-code [value]="vCardData" [size]="150"></qr-code>
+                    </td>
                 </tr>
             </tbody>
 

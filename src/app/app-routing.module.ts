@@ -15,7 +15,7 @@ import { GrillaCompletaComponent } from './componentes/grilla-completa/grilla-co
 
 
 const MiRuteo = [
-  {path: '' , component: VehiculoComponent},
+  {path: '' , component: GrillaCompletaComponent},
   {path: 'Login' , component: LoginComponent},
   {path: 'Registro' , component: RegistroComponent},
   {path: 'Home' , component: HomeComponent},
