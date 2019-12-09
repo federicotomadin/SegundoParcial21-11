@@ -20,7 +20,6 @@ export class ListadoVehiculosComponent implements OnInit {
   ngOnInit() {
     this.concesioService.getVehiculos().subscribe( resp => {
       resp.map( auto =>  {
-        console.log(this.concesioService.idConcesionariaActual);
         if (this.concesioService.razonSocial === auto.concesionaria) {
           this.automoviles = resp;
         }
