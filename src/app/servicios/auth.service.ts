@@ -16,6 +16,7 @@ export class AuthService {
 
 public eventAuthError = new BehaviorSubject<boolean>(true);
 public eventAuthErrors = this.eventAuthError.asObservable();
+public usuarioConectado = false;
 
 
   constructor(private afAuth: AngularFireAuth,
@@ -46,8 +47,8 @@ public eventAuthErrors = this.eventAuthError.asObservable();
   })
   .then(concesioCredential => {
     if (concesioCredential) {
-
-  this.router.navigate(['/Home']);
+      this.usuarioConectado = true;
+      this.router.navigate(['/Home']);
  }
 });
  }

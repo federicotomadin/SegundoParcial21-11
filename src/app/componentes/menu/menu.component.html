@@ -1,16 +1,13 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a style="color: white;" class="navbar-brand" routerLink="/Home">Home</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
+        <div *ngIf="isLogin" class="navbar-nav">
             <a class="nav-item nav-link" routerLink="/GrillaCompleta">Grilla general</a>
             <a class="nav-item nav-link" routerLink="/Vehiculo">Cargar Vehiculo</a>
         </div>
     </div>
 
-    <form class="form-inline">
+    <form *ngIf="isLogin" class="form-inline">
         <a style="color: greenyellow"><span class=""></span>{{razonSocial}}</a>
         <button class="btn btn-outline-danger pull-xs-right" (click)=SalirDeLaSesion() style="color: white"><span class="glyphicon glyphicon-user"></span>SALIR</button>
     </form>

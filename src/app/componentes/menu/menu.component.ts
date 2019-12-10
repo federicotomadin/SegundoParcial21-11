@@ -11,34 +11,43 @@ import { ConcesioService } from '../../servicios/concesio.service';
 })
 export class MenuComponent implements OnInit {
 
- public email = 'email';
+ public email = '';
  public razonSocial = '';
+ public isLogin = false;
 
   constructor(private concesioService: ConcesioService,
               private authUser: AuthService, private router: Router, private afAuth: AngularFireAuth) {
-    this.email = afAuth.auth.currentUser.email;
+    // this.email = afAuth.auth.currentUser.email;
 
+    if (authUser.usuarioConectado) {
+    this.concesioService.getConcesio().subscribe(resp => {
+
+      resp.map( datos => {
+        this.email = datos.email;
+        this.razonSocial = datos.razonSocial;
+      });
+    });
+  }
+
+    if (this.email !== '') {
+      this.isLogin = true;
+      this.email = afAuth.auth.currentUser.email;
+   }
+  }
+
+  ngOnInit() {
     this.concesioService.getConcesio().subscribe(resp => {
       resp.map( datos => {
-        console.log(datos);
-            this.razonSocial = datos.razonSocial;
+        this.email = datos.email;
+        this.razonSocial = datos.razonSocial;
+        this.isLogin = true;
       });
     });
   }
 
 
-  ngOnInit() {
-    // this.concesioService.getConcesio().subscribe(resp => {
-    //   resp.map( datos => {
-    //       if (this.email === datos.email) {
-    //         this.razonSocial = datos.razonSocial;
-    //       }
-    //   });
-    // });
-  }
-
-
   SalirDeLaSesion() {
+    this.isLogin = false;
     this.authUser.Logout();
     this.router.navigate(['/Login']);
   }
