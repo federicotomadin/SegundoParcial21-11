@@ -72,8 +72,6 @@ export class ConcesioService {
     this.concesionariaDoc.delete();
   }
 
-
-
   createConcesio(concesio: Concesionaria, urlFoto: string): void {
     const con = new Concesionaria();
     con.email = concesio.email;

@@ -7,6 +7,7 @@ import { Concesionaria } from '../../clases/Concesionaria';
 import { auth } from 'firebase';
 import { ConcesioService } from '../../servicios/concesio.service';
 import { FirebaseStorageService } from 'src/app/servicios/firebase-storage.service';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 
 
@@ -25,7 +26,7 @@ export class LoginComponent implements OnInit {
   mostrarImagen = false;
   urlFoto: string;
 
-  constructor(private authConcesio: AuthService, private router: Router, private fireStorageService: FirebaseStorageService ) {
+  constructor(private afAuth: AngularFireAuth, private authConcesio: AuthService, private router: Router, private fireStorageService: FirebaseStorageService ) {
     this.TraerImagenConcesionaria();
    }
 

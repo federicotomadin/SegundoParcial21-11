@@ -8,6 +8,7 @@ import { ConcesioService } from './concesio.service';
 import Swal from 'sweetalert2';
 import { BehaviorSubject } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -23,7 +24,8 @@ public usuarioConectado = false;
               private db: AngularFirestore,
               private dbBase: AngularFireDatabase,
               private router: Router,
-              private concesioService: ConcesioService) { }
+              private concesioService: ConcesioService) {
+               }
 
 
   CrearUsuario(concesio: Concesionaria, urlFoto: string) {
@@ -33,8 +35,15 @@ public usuarioConectado = false;
    });
  }
 
+ getUsuario() {
+  this.afAuth.user.subscribe(resp => {
+    console.log(resp.email);
+  })
+ }
+
  Login(concesio: Concesionaria) {
 
+ 
   this.afAuth.auth.signInWithEmailAndPassword(concesio.email, concesio.password)
   .catch(error => {
     this.eventAuthError.next(error);
@@ -53,6 +62,17 @@ public usuarioConectado = false;
 });
  }
 
+ estaAutenticado(): boolean {
+    
+  this.afAuth.auth.onAuthStateChanged(user => {
+    if (user !== null) {     
+        return true;
+    } else {
+     return false
+    }
+  })
+  return false;
+}
 
  Logout() {
   return this.afAuth.auth.signOut();
