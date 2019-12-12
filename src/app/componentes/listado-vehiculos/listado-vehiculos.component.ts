@@ -21,7 +21,7 @@ export class ListadoVehiculosComponent implements OnInit {
     this.concesioService.getVehiculos().subscribe( resp => {
       resp.map( auto =>  {
         if (this.concesioService.razonSocial === auto.concesionaria) {
-          this.automoviles = resp;
+          this.automoviles.push(auto);
         }
       });
       });
@@ -53,5 +53,9 @@ export class ListadoVehiculosComponent implements OnInit {
 
 descargarCSV() {
   this.downloadFile(this.automoviles);
+}
+
+EliminarVehiculo(auto: Vehiculo) {
+  this.concesioService.deleteConcesio(auto);
 }
 }

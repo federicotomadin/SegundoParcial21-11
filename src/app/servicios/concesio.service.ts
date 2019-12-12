@@ -20,6 +20,7 @@ export class ConcesioService {
   automoviles: Observable<Vehiculo[]>;
   concesionaria: Observable<Concesionaria[]>;
   concesionariaDoc: AngularFirestoreDocument<Concesionaria>;
+  VehiculoDoc: AngularFirestoreDocument<Vehiculo>;
 
 
   idConcesionariaActual: any;
@@ -67,9 +68,10 @@ export class ConcesioService {
     }
   }
 
-  deleteConcesio(concesio: Concesionaria) {
-    this.concesionariaDoc = this.miBase.doc(`concesionaria/${concesio.key}`);
-    this.concesionariaDoc.delete();
+  deleteConcesio(auto: Vehiculo) {
+    console.log(auto);
+    this.VehiculoDoc = this.miBase.doc(`vehiculo/${auto.key}`);
+    this.VehiculoDoc.delete();
   }
 
   createConcesio(concesio: Concesionaria, urlFoto: string): void {

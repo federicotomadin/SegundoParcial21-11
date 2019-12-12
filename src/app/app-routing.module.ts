@@ -17,15 +17,15 @@ import { MenuComponent } from './componentes/menu/menu.component';
 
 const MiRuteo = [
   {path: '' , component: LoginComponent},
+  // {path: '**' , component: LoginComponent},
   {path: 'Login' , component: LoginComponent},
   {path: 'Registro' , component: RegistroComponent},
   {path: 'Home' , component: HomeComponent, canActivate: [AuthGuard]},
-  {path: 'Vehiculo' , component: VehiculoComponent},
-  {path: 'Menu' , component: MenuComponent, canActivate: [AuthGuard]},
-  {path: 'GrillaCompleta' , component: GrillaCompletaComponent}   ];
+  {path: 'Vehiculo' , component: VehiculoComponent, canActivate: [AuthGuard]},
+  {path: 'Menu' , component: MenuComponent },
+  {path: 'GrillaCompleta' , component: GrillaCompletaComponent, canActivate: [AuthGuard]}   ];
 
   
-  // {path: '**' , component: ErrorComponent},
   // {path: 'error' , component: ErrorComponent}];
 
 @NgModule({

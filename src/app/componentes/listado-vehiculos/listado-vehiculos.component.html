@@ -9,6 +9,7 @@
                     <th scope="col">Año</th>
                     <th scope="col">Kilometros</th>
                     <th scope="col">Tipo</th>
+                    <th scope="col">Funciones</th>
                 </tr>
             </thead>
             <tbody *ngFor="let item of automoviles">
@@ -18,6 +19,9 @@
                     <td>{{item.anio}}</td>
                     <td>{{item.kilometros}}</td>
                     <td>{{item.tipo}}</td>
+                    <td>
+                        <button (click)="EliminarVehiculo(item)" type="button" class="btn btn-danger">Eliminar</button>
+                    </td>
                 </tr>
             </tbody>
 

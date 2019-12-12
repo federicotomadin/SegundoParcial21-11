@@ -3,6 +3,7 @@ import { AuthService } from '../../servicios/auth.service';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ConcesioService } from '../../servicios/concesio.service';
+import { take, map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-menu',
@@ -13,15 +14,17 @@ export class MenuComponent implements OnInit {
 
  public email = '';
  public razonSocial = '';
- public isLogin = false;
+ public estaLogueado = false;
+
 
   constructor(private concesioService: ConcesioService,
               private authUser: AuthService, private router: Router, private afAuth: AngularFireAuth) {
     // this.email = afAuth.auth.currentUser.email;
+    this.estaLogueado = true;
 
     if (authUser.usuarioConectado) {
     this.concesioService.getConcesio().subscribe(resp => {
-
+     
       resp.map( datos => {
         this.email = datos.email;
         this.razonSocial = datos.razonSocial;
@@ -29,25 +32,37 @@ export class MenuComponent implements OnInit {
     });
   }
 
-    if (this.email !== '') {
-      this.isLogin = true;
+    if (this.authUser.isLogin) {
+      this.estaLogueado = true;
       this.email = afAuth.auth.currentUser.email;
    }
   }
 
   ngOnInit() {
+    this.estaLogueado = true;
+    if (this.router.url === '/Login' ) {
+     this.SalirDeLaSesion();
+
+    } else {
+      if (this.router.url === '/Login' ) {
+        this.SalirDeLaSesion();
+      } else {
+
     this.concesioService.getConcesio().subscribe(resp => {
       resp.map( datos => {
         this.email = datos.email;
         this.razonSocial = datos.razonSocial;
-        this.isLogin = true;
+        this.estaLogueado = true;
       });
     });
+  }
+}
   }
 
 
   SalirDeLaSesion() {
-    this.isLogin = false;
+    this.estaLogueado = false;
+    this.authUser.isLogin = false;
     this.authUser.Logout();
     this.router.navigate(['/Login']);
   }

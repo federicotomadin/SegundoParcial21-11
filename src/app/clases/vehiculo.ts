@@ -1,4 +1,5 @@
 export class Vehiculo {
+    key?: string;
     marca?: string;
     modelo?: string;
     anio?: string;

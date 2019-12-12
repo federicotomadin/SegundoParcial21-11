@@ -26,7 +26,8 @@ export class LoginComponent implements OnInit {
   mostrarImagen = false;
   urlFoto: string;
 
-  constructor(private afAuth: AngularFireAuth, private authConcesio: AuthService, private router: Router, private fireStorageService: FirebaseStorageService ) {
+  constructor(private afAuth: AngularFireAuth, private authConcesio: AuthService, private authService: AuthService,
+              private router: Router, private fireStorageService: FirebaseStorageService ) {
     this.TraerImagenConcesionaria();
    }
 
@@ -84,7 +85,6 @@ TraerImagenConcesionaria() {
     Swal.showLoading();
 
     this.authConcesio.Login(form.value);
-
     if (this.recordarme) {
     localStorage.setItem('email', this.usuario.email);
   }

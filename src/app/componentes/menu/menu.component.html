@@ -7,7 +7,7 @@
         </div>
     </div>
 
-    <form *ngIf="isLogin" class="form-inline">
+    <form *ngIf="estaLogueado" class="form-inline">
         <a style="color: greenyellow"><span class=""></span>{{razonSocial}}</a>
         <button class="btn btn-outline-danger pull-xs-right" (click)=SalirDeLaSesion() style="color: white"><span class="glyphicon glyphicon-user"></span>SALIR</button>
     </form>

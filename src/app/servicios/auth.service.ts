@@ -18,6 +18,7 @@ export class AuthService {
 public eventAuthError = new BehaviorSubject<boolean>(true);
 public eventAuthErrors = this.eventAuthError.asObservable();
 public usuarioConectado = false;
+public isLogin = false;
 
 
   constructor(private afAuth: AngularFireAuth,
@@ -35,10 +36,11 @@ public usuarioConectado = false;
    });
  }
 
- getUsuario() {
+ getUsuario(): string {
   this.afAuth.user.subscribe(resp => {
-    console.log(resp.email);
-  })
+    return resp.email;
+  });
+  return '';
  }
 
  Login(concesio: Concesionaria) {
@@ -68,7 +70,7 @@ public usuarioConectado = false;
     if (user !== null) {     
         return true;
     } else {
-     return false
+     return false;
     }
   })
   return false;
