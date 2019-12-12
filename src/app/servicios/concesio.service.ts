@@ -5,6 +5,7 @@ import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument 
 import { Observable } from 'rxjs';
 import { map, concat } from 'rxjs/operators';
 import { Vehiculo } from '../clases/vehiculo';
+import { Action } from 'rxjs/internal/scheduler/Action';
 
 type CollentionPredicate<T> = string | AngularFirestoreCollection;
 type DocumentPredicate<T> = string | AngularFirestoreDocument;
@@ -33,7 +34,13 @@ export class ConcesioService {
     this.RefConcesio = db.list(this.dbPathConcesio);
     // this.concesionaria = this.miBase.collection('concesionaria').valueChanges();
     this.autoCollection = this.miBase.collection('vehiculo');
-    this.automoviles = this.miBase.collection<Vehiculo>('vehiculo').valueChanges();
+    this.automoviles = this.autoCollection.snapshotChanges().pipe(map(actions => {
+      return actions.map(a => {
+        const data = a.payload.doc.data() as Vehiculo;
+        data.key = a.payload.doc.id;
+        return data;
+      });
+    }));
     this.concesionariaCollection = this.miBase.collection('concesionaria');
     this.concesionaria = this.concesionariaCollection.snapshotChanges().pipe(map(actions => {
       return actions.map(a => {
@@ -69,10 +76,10 @@ export class ConcesioService {
   }
 
   deleteConcesio(auto: Vehiculo) {
-    console.log(auto);
+    console.log( this.automoviles);
     this.VehiculoDoc = this.miBase.doc(`vehiculo/${auto.key}`);
     this.VehiculoDoc.delete();
-  }
+        }
 
   createConcesio(concesio: Concesionaria, urlFoto: string): void {
     const con = new Concesionaria();

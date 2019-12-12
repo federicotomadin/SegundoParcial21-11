@@ -5,6 +5,7 @@ import * as jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import { UserOptions } from 'jspdf-autotable';
 import { saveAs } from 'file-saver';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listado-vehiculos',
@@ -15,7 +16,7 @@ export class ListadoVehiculosComponent implements OnInit {
 
   automoviles = [];
 
-  constructor(private concesioService: ConcesioService) { }
+  constructor(private concesioService: ConcesioService, private route: Router) { }
 
   ngOnInit() {
     this.concesioService.getVehiculos().subscribe( resp => {
@@ -57,5 +58,6 @@ descargarCSV() {
 
 EliminarVehiculo(auto: Vehiculo) {
   this.concesioService.deleteConcesio(auto);
+  this.route.navigate(['/Home']);
 }
 }
