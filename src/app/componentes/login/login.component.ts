@@ -18,6 +18,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class LoginComponent implements OnInit {
 
+  soyUsuario = false;
   recordarme = false;
   usuario: Concesionaria;
   captchaLogin = 'vacio';
@@ -33,6 +34,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.usuario = new Concesionaria();
+    
 
     if (localStorage.getItem('email')) {
       this.captchaLogin = 'vacio';
@@ -55,26 +57,45 @@ TraerImagenConcesionaria() {
   // this.fireStorageService.referenciaCloudStorage(localStorage.getItem('urlFoto'));
 }
 
-  ReconociendoCaptcha(cap: string) {
-    this.captchaLogin = cap;
-  }
+  // ReconociendoCaptcha(cap: string) {
+  //   this.captchaLogin = cap;
+  // }
 
   Login(form: NgForm) {
 
-    if (form.invalid) { return; }
-    if (this.captchaLogin === 'vacio') {
+  if (this.soyUsuario === true ) {
 
-  setTimeout(function() {
+    if (form.invalid) { return; }
+    
     Swal.fire({
-    allowOutsideClick: false,
-    icon: 'error',
-    text: 'Captcha no validado',
-  });
- }, 200);
-  Swal.close();
-  this.router.navigate(['/Login']);
-  return;
-}
+      allowOutsideClick: false,
+      icon: 'info',
+      text: 'Ingresando...',
+      timer: 2000
+     });
+         Swal.showLoading();
+     
+         this.authConcesio.LoginUsuario(form.value);
+         if (this.recordarme) {
+         localStorage.setItem('email', this.usuario.email);
+       }
+         Swal.close();
+  }
+  
+    if (form.invalid) { return; }
+    // if (this.captchaLogin === 'vacio') {
+
+//   setTimeout(function() {
+//     Swal.fire({
+//     allowOutsideClick: false,
+//     icon: 'error',
+//     text: 'Captcha no validado',
+//   });
+//  }, 200);
+//   Swal.close();
+//   this.router.navigate(['/Login']);
+//   return;
+// }
 
     Swal.fire({
  allowOutsideClick: false,

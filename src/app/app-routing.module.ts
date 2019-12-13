@@ -13,6 +13,8 @@ import { HomeComponent } from './componentes/home/home.component';
 import { VehiculoComponent } from './componentes/vehiculo/vehiculo.component';
 import { GrillaCompletaComponent } from './componentes/grilla-completa/grilla-completa.component';
 import { MenuComponent } from './componentes/menu/menu.component';
+import { UsuarioComponent } from './componentes/usuario/usuario.component';
+import { ListadoVehiculosComponent } from './componentes/listado-vehiculos/listado-vehiculos.component';
 
 
 const MiRuteo = [
@@ -23,6 +25,8 @@ const MiRuteo = [
   {path: 'Home' , component: HomeComponent, canActivate: [AuthGuard]},
   {path: 'Vehiculo' , component: VehiculoComponent, canActivate: [AuthGuard]},
   {path: 'Menu' , component: MenuComponent },
+  {path: 'ListadoVehiculos' , component: ListadoVehiculosComponent, canActivate: [AuthGuard] },
+  {path: 'Usuario' , component: UsuarioComponent },
   {path: 'GrillaCompleta' , component: GrillaCompletaComponent, canActivate: [AuthGuard]}   ];
 
   

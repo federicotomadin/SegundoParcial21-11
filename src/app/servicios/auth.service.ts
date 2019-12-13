@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 import { ConcesioService } from './concesio.service';
 import Swal from 'sweetalert2';
 import { BehaviorSubject } from 'rxjs';
+import { UsuarioComponent } from '../componentes/usuario/usuario.component';
+import { Usuario } from '../clases/usuario';
 
 
 @Injectable({
@@ -36,6 +38,19 @@ public isLogin = false;
    });
  }
 
+ CrearUsuarioNuevo(usuario: Usuario) {
+   this.afAuth.auth.createUserWithEmailAndPassword(usuario.email, usuario.password).then( resp => {
+     this.concesioService.createUsuarioNuevo(usuario);
+   });
+ }
+
+
+
+
+
+
+
+
  getUsuario(): string {
   this.afAuth.user.subscribe(resp => {
     return resp.email;
@@ -43,9 +58,41 @@ public isLogin = false;
   return '';
  }
 
+ LoginUsuario(usuario: Usuario) {
+ 
+  this.afAuth.auth.signInWithEmailAndPassword(usuario.email, usuario.password)
+  .catch(error => {
+    this.eventAuthError.next(error);
+    Swal.fire({
+      allowOutsideClick: false,
+      icon: 'error',
+      text: 'Credenciales Incorrectas',
+      timer: 2000
+     });
+  })
+  .then(usuarioCredential => {
+    if (usuarioCredential) {
+      this.usuarioConectado = true;
+      this.router.navigate(['/ListadoVehiculos']);
+ }
+});
+
+
+ }
+
  Login(concesio: Concesionaria) {
 
- 
+  if (concesio.email === 'fede@gmail.com' || concesio.email === 'carlos@gmail.com') {
+    Swal.fire({
+      allowOutsideClick: false,
+      icon: 'error',
+      text: 'Credenciales Incorrectas',
+      timer: 2000
+     });
+     this.router.navigate(['/Login']);
+     return;
+  }
+
   this.afAuth.auth.signInWithEmailAndPassword(concesio.email, concesio.password)
   .catch(error => {
     this.eventAuthError.next(error);

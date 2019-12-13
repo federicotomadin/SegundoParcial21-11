@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Vehiculo } from '../../clases/vehiculo';
 import { ConcesioService } from '../../servicios/concesio.service';
 import * as jsPDF from 'jspdf';
@@ -15,6 +15,8 @@ import { Router } from '@angular/router';
 export class ListadoVehiculosComponent implements OnInit {
 
   automoviles = [];
+  vCardData = '';
+
 
   constructor(private concesioService: ConcesioService, private route: Router) { }
 
@@ -26,6 +28,7 @@ export class ListadoVehiculosComponent implements OnInit {
         }
       });
       });
+
   }
 
   DescargarPdf() {
@@ -59,5 +62,16 @@ descargarCSV() {
 EliminarVehiculo(auto: Vehiculo) {
   this.concesioService.deleteConcesio(auto);
   this.route.navigate(['/Home']);
+}
+
+cargarVehiculo(auto: Vehiculo) {
+      const datos = {
+        marca: auto.marca,
+        modelo: auto.modelo,
+        año: auto.anio,
+        kilometros: auto.kilometros,
+        tipo: auto.tipo
+      };
+      this.vCardData = JSON.stringify(datos);
 }
 }

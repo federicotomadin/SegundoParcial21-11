@@ -39,6 +39,7 @@ export class MenuComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.estaLogueado = true;
     if (this.router.url === '/Login' ) {
      this.SalirDeLaSesion();
@@ -51,6 +52,10 @@ export class MenuComponent implements OnInit {
     this.concesioService.getConcesio().subscribe(resp => {
       resp.map( datos => {
         this.email = datos.email;
+        if (this.email === 'fede@gmail.com') {
+          this.razonSocial = 'Usuario';
+          this.estaLogueado = true;
+        }
         this.razonSocial = datos.razonSocial;
         this.estaLogueado = true;
       });

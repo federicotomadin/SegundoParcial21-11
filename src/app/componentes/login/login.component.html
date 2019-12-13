@@ -29,14 +29,16 @@
                 <input type="password" placeholder="Clave" [(ngModel)]="usuario.password" name="password" minlength="6" required>
 
                 <button type="submit">Ingresar</button><br>
-                <app-mi-captcha (captcha)="ReconociendoCaptcha($event)"></app-mi-captcha>
+                <!-- <app-mi-captcha (captcha)="ReconociendoCaptcha($event)"></app-mi-captcha> -->
 
+                <input type="checkbox" [(ngModel)]="soyUsuario" name="soyUsuario"> Soy Usuario<br>
                 <input type="checkbox" [(ngModel)]="recordarme" name="remember-me"> Recordar mis datos <br>
             </div>
 
 
             <div class="container" style="background-color:#f1f1f1">
-                <button type="button" class="aceptbtn" routerLink="/Registro">Registrarse</button>
+                <button type="button" class="aceptbtn" routerLink="/Registro">Registrar Concesionaria</button>
+                <button type="button" class="aceptbtn" routerLink="/Usuario">Registrar Usuario</button>
                 <!-- <span class="psw ">Te olvidaste <a href="# ">la clave?</a></span> -->
             </div>
         </form>
