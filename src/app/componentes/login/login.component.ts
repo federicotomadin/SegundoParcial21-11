@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import Swal from 'sweetalert2';
+
 import { AuthService } from '../../servicios/auth.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import Swal from 'sweetalert2';
 import { Concesionaria } from '../../clases/Concesionaria';
 import { auth } from 'firebase';
 import { ConcesioService } from '../../servicios/concesio.service';
@@ -18,7 +19,6 @@ import { AngularFireAuth } from '@angular/fire/auth';
 })
 export class LoginComponent implements OnInit {
 
-  soyUsuario = false;
   recordarme = false;
   usuario: Concesionaria;
   captchaLogin = 'vacio';
@@ -34,7 +34,6 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.usuario = new Concesionaria();
-    
 
     if (localStorage.getItem('email')) {
       this.captchaLogin = 'vacio';
@@ -63,24 +62,6 @@ TraerImagenConcesionaria() {
 
   Login(form: NgForm) {
 
-  if (this.soyUsuario === true ) {
-
-    if (form.invalid) { return; }
-    
-    Swal.fire({
-      allowOutsideClick: false,
-      icon: 'info',
-      text: 'Ingresando...',
-      timer: 2000
-     });
-         Swal.showLoading();
-     
-         this.authConcesio.LoginUsuario(form.value);
-         if (this.recordarme) {
-         localStorage.setItem('email', this.usuario.email);
-       }
-         Swal.close();
-  }
   
     if (form.invalid) { return; }
     // if (this.captchaLogin === 'vacio') {

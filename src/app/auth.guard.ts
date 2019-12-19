@@ -20,7 +20,7 @@ export class AuthGuard implements CanActivate {
     return this.afsAuth.authState
       .pipe(take(1))
       .pipe(map(authState => !!authState))
-      .pipe(tap( auth => {
+      .pipe(tap(auth => {
         if (!auth) {
           this.router.navigate(['/Login']);
           this.authUser.Logout();

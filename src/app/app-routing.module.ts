@@ -23,7 +23,7 @@ const MiRuteo = [
   {path: 'Login' , component: LoginComponent},
   {path: 'Registro' , component: RegistroComponent},
   {path: 'Home' , component: HomeComponent, canActivate: [AuthGuard]},
-  {path: 'Vehiculo' , component: VehiculoComponent, canActivate: [AuthGuard]},
+  {path: 'Vehiculo' , component: VehiculoComponent},
   {path: 'Menu' , component: MenuComponent },
   {path: 'ListadoVehiculos' , component: ListadoVehiculosComponent, canActivate: [AuthGuard] },
   {path: 'Usuario' , component: UsuarioComponent },

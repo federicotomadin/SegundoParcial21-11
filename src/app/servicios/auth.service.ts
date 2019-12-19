@@ -45,12 +45,6 @@ public isLogin = false;
  }
 
 
-
-
-
-
-
-
  getUsuario(): string {
   this.afAuth.user.subscribe(resp => {
     return resp.email;
@@ -58,27 +52,6 @@ public isLogin = false;
   return '';
  }
 
- LoginUsuario(usuario: Usuario) {
- 
-  this.afAuth.auth.signInWithEmailAndPassword(usuario.email, usuario.password)
-  .catch(error => {
-    this.eventAuthError.next(error);
-    Swal.fire({
-      allowOutsideClick: false,
-      icon: 'error',
-      text: 'Credenciales Incorrectas',
-      timer: 2000
-     });
-  })
-  .then(usuarioCredential => {
-    if (usuarioCredential) {
-      this.usuarioConectado = true;
-      this.router.navigate(['/ListadoVehiculos']);
- }
-});
-
-
- }
 
  Login(concesio: Concesionaria) {
 
